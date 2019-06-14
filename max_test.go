@@ -24,11 +24,8 @@ func TestFindMax(t *testing.T) {
 	if reflect.ValueOf(res).String() != "assigment" {
 		t.Errorf("The maximum value should be %s", "assigment")
 	}
-	type Book struct {
-		Name  string
-		Count int
-	}
-	books := []Book{
+	
+	books := []struct{Name string; Count int}{
 		{"book1", 3},
 		{"book2", 17},
 		{"book3", 30},
