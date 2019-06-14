@@ -46,7 +46,7 @@ func TestFindMax(t *testing.T) {
 		f := s.Field(i)
 		if typeOfT.Field(i).Name == "Count" {
 			if f.Int() != 50 {
-				t.Errorf("The maximum value should be %s", "assigment")
+				t.Errorf("The maximum value should be %d", 50)
 			}
 		}
 	}
