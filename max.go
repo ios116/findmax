@@ -10,7 +10,7 @@ import (
 func FindMax(slice interface{}, less func(i, j int) bool) interface{} {
 	s := reflect.ValueOf(slice)
 	if s.Kind() != reflect.Slice {
-		panic("The provided isn't slice")
+		panic("The provided interface isn't slice")
 	}
 	var max int
 	for i := 0; i < s.Len(); i++ {
