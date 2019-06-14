@@ -2,39 +2,22 @@ package findmax
 
 import (
 	"reflect"
-	"fmt"
-	"sort"
 )
 
+// FindMax returns a max the elements(interface) in the provided slice.
+//
+// FindMax panics if the provided interface is not a slice.
+func FindMax(slice interface{}, less func(i, j int) bool) interface{} {
+	s := reflect.ValueOf(slice)
+	if s.Kind() != reflect.Slice {
+		panic("value isn't slice")
+	}
+	var max int
+	for i := 0; i < s.Len(); i++ {
+		if less(max, i) {
+			max = i
+		}
 
-func rrr(i,j int) {
-   sort.Slice([]int{1,2,3}, func(i, j int) bool{
-	   return true
-   })
-}
-
-// FindMax comporator
-func FindMax(slice interface{},less func(i, j int) bool) interface{} {
-
-	rv := reflect.ValueOf(slice)
-	swap := reflect.Swapper(slice)
-	swap(1,2)
-	length := rv.Len()
-	fmt.Println("rv=>",rv)
-	fmt.Println("len=>",length)
-
-	// var x float64 = 3.4
-	// fmt.Println("type:", reflect.TypeOf(x))
-	// v:=reflect.ValueOf(x)
-	// fmt.Println("value:", v.String())
-	// fmt.Println("kind is float64:", v.Kind() == reflect.Float64)
-	// fmt.Println(x == v.Float())
-
-   
-	return true
-
-
-	
-	
-	
+	}
+	return s.Index(max).Interface()
 }
