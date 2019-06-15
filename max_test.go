@@ -24,8 +24,11 @@ func TestFindMax(t *testing.T) {
 	if reflect.ValueOf(res).String() != "assigment" {
 		t.Errorf("The maximum value should be %s", "assigment")
 	}
-	
-	books := []struct{Name string; Count int}{
+
+	books := []struct {
+		Name  string
+		Count int
+	}{
 		{"book1", 3},
 		{"book2", 17},
 		{"book3", 30},
@@ -38,13 +41,9 @@ func TestFindMax(t *testing.T) {
 	})
 
 	s := reflect.ValueOf(res)
-	typeOfT := s.Type()
-	for i := 0; i < s.NumField(); i++ {
-		f := s.Field(i)
-		if typeOfT.Field(i).Name == "Count" {
-			if f.Int() != 50 {
-				t.Errorf("The maximum value should be %d", 50)
-			}
-		}
+	f := s.FieldByName("Count")
+	if f.Int() != 50 {
+		t.Errorf("The maximum value should be %d", 50)
 	}
+
 }
